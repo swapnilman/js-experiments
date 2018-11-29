@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title> JS Slider </title>
+    <link href="style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    
+    <button id="prev" class="button prev"><</button>
+
+    <div class="wrapper">
+      <div class="slider" id="slider">
+        <img src="images/1.jpeg" />
+        <img src="images/2.jpeg" />
+        <img src="images/3.jpg" />
+        <img src="images/4.jpg" />
+        <img src="images/5.jpg" />
+        <img src="images/6.jpg" />
+      </div>
+    </div>
+
+    <button id="next" class="button next">></button>
+  
+
+    <!--SCRIPT -->
+    <script src="script.js"></script>
+    <script>
+      var slider = new Slider('slider');
+      slider.init();
+    </script>
+
+  </body>
+
+</html>
