@@ -8,10 +8,8 @@
 
   <body>
 
-    <button id="prev" class="button prev"><</button>
-
-    <div class="wrapper" id="wrapper">
-      <div class="slider" id="slider">
+    <div class="container" id="container">
+      <div class="wrapper" id="wrapper">
         <img src="images/1.jpeg" />
         <img src="images/2.jpeg" />
         <img src="images/3.jpg" />
@@ -21,13 +19,11 @@
       </div>
     </div>
 
-    <button id="next" class="button next">></button>
-
 
     <!--SCRIPT -->
     <script src="script.js"></script>
     <script>
-      var slider = new Slider('slider', 'wrapper');
+      var slider = new Slider('wrapper', 'container');
       slider.init();
     </script>
 
