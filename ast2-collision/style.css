@@ -3,17 +3,18 @@
   padding: 0;
 }
 
-.box {
-  height: 20px;
-  width: 20px;
-  border: 1px solid #00ff00;
-  position: absolute;
-}
-
-#container {
-  height: 600px;
-  width: 600px;
-  margin: auto;
-  border: 2px solid #ffff00;
+.container {
+  height: 500px;
+  width: 900px;
+  background: #FF7A5A;
+  margin: 0 auto;
   position: relative;
 }
+
+.box {
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background: #FCF4D9;
