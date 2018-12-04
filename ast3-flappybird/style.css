@@ -1,0 +1,70 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+#bg {
+  width: 900px;
+  height: 500px;
+  background: url("images/background.png");
+  left: 225px;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes animateBird {
+  from {
+    background-position: 0px 0px;
+  }
+
+  to {
+    background-position: 0px -96px;
+  }
+}
+
+#bird {
+  animation: animateBird 300ms steps(4) infinite;
+}
+
+.pipe {
+  position: absolute;
+  left: 500px;
+  width: 52px;
+  height: 100%;
+}
+
+.pipe_upper {
+  position: absolute;
+  top: 0;
+  width: 52px;
+  background-image: url('images/pipe.png');
+  background-repeat: repeat-y;
+  background-position: center;
+}
+
+.pipe_upper:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 52px;
+  height: 26px;
+  background-image: url('images/pipe-down.png');
+}
+
+.pipe_lower {
+  position: absolute;
+  bottom: 0;
+  width: 52px;
+  background-image: url('images/pipe.png');
+  background-repeat: repeat-y;
+  background-position: center;
+}
+
+.pipe_lower:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 52px;
+  height: 26px;
+  background-image: url('images/pipe-up.png');
+}
