@@ -35,8 +35,9 @@ class Word {
     container.appendChild(this.el);
   }
 
-  fall() {
-    this.yPos++;
+  //updates the position of words on the screen
+  fall(speed) {
+    this.yPos += speed;
     this.el.style.top = this.yPos + 'px';
     if(this.yPos + 17 > containerEl.offsetHeight) {
       gameOver();
@@ -63,6 +64,10 @@ class Word {
     if(this.chars.join('') === inputChars.join('')) {
       containerEl.removeChild(this.el);
       return true;
+    } else {
+      for(let i = 0; i < this.chars.length; i++) {
+        this.children[i].classList.remove('highlight')
+      }
     }
   }
 }
@@ -74,38 +79,38 @@ class Game {
     this.inputChars = [];
     this.interval;
     this.score;
+    this.level;
     this.speed;
+    this.count;
   }
 
   init() {
     this.inPlayWords = [];
     this.inputChars = [];
     this.score = 0;
-    this.speed = 1000/30;
+    this.level = 0;
+    this.speed = 1;
     scoreEl.innerHTML = this.score;
-    this.gameLoop();
+    this.count = 0;
+    document.addEventListener('keydown', (e) => this.pressEvent(e))
+    this.interval = setInterval(() => this.gameLoop(), 1000/30)
   }
 
   gameLoop() {
-    let count = 0;
-    document.addEventListener('keydown', this.pressEvent);
-    let that = this
-    this.interval = setInterval(function(){
-      if (count % 50 === 0 || that.inPlayWords.length == 0) {
-        let word = new Word();
-        that.inPlayWords.push(word)
-        word.draw()
-      }
-      count++;
-      for(let i = 0; i < that.inPlayWords.length; i++) {
-        that.inPlayWords[i].fall(that);
-      }
-    }, this.speed)
+    if (this.count % ((10 - this.level) * 20) === 0 || this.inPlayWords.length == 0) {
+      let word = new Word();
+      this.inPlayWords.push(word)
+      word.draw()
+    }
+    this.count++;
+    for(let i = 0; i < this.inPlayWords.length; i++) {
+      this.inPlayWords[i].fall(this.speed);
+    }
   }
 
+  //handles key press events
   pressEvent(e) {
     let key = e.keyCode;
-    // console.log(this)
     if (key >= 65 && key <= 90) {
       //for Alphabets
       this.inputChars.push(e.key); //pushes new character into the inputChars array
@@ -124,10 +129,11 @@ class Game {
         if(this.inPlayWords[i].isUpdated) {
           if(this.inPlayWords[i].checkMatch(this.inputChars)) {
             this.inPlayWords.splice(i, 1); //removes word from array if match found
-            this.score++; //increment score
-            scoreEl.innerHTML = this.score;
-          } else {
-            this.inPlayWords[i].checkChar([]);
+            this.score++;
+            scoreEl.innerHTML = this.score; //updates score on screne
+            if(this.score % 13 === 0 && this.score < 10) this.level++; //level up after 13 words :: max level 10
+            if(this.score % 21 === 0) this.speed++; //speed up after certain interval
+            //use of prime numbers to avoid two events from overlapping
           }
         }
       }
@@ -139,7 +145,7 @@ class Game {
 
 var game = new Game();
 
-buttonEl.addEventListener('click', function() {
+buttonEl.addEventListener('click', () => {
   for (let i = 0; i < game.inPlayWords.length; i++) {
     containerEl.removeChild(game.inPlayWords[i].el);
   }

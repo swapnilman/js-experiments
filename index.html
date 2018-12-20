@@ -11,29 +11,30 @@
       font-family: monospace;
       color: #6699ff;
     }
-
     h1 {
       font-size: 48px;
-      padding-bottom: 16px;
+      padding: 0 0 8px;
     }
-
-    h2 {
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
       font-size: 32px;
-      padding-bottom: 8px;
+      padding: 8px 0 0;
     }
-
     a {
       color: #006699;
       text-decoration: none;
+      display: block;
     }
-
     a:hover {
       color: #ff9966;
+      margin: 0 8px;
     }
-
     .container {
-      margin: 16px;
-      padding: 2px 8px;
+      margin: 8px 16px 48px;
+      padding: 0 8px;
       border-left: 2px solid #ff9966;
     }
   </style>
@@ -42,9 +43,21 @@
 <body>
   <div class="container">
     <h1>JS Experiments</h1>
-    <a href="ast1"><h2>Slider</h2></a>
-    <a href="ast2"><h2>Box Collision</h2></a>
-    <a href="ast3"><h2>Flappy Bird</h2></a>
-    <a href="ast4"><h2>Typing Tutor</h2></a>
+    <ul>
+      <li><a href="ast1">Slider</a></li>
+      <li><a href="ast2">Box Collision</a></li>
+      <li><a href="ast3">Flappy Bird</a></li>
+      <li><a href="ast4">Typing Tutor</a></li>
+    </ul>
+  </div>
+
+  <div class="container">
+    <h1>View in Console</h1>
+    <ul>
+      <li><a href="ast1">Slider</a></li>
+      <li><a href="ast2">Box Collision</a></li>
+      <li><a href="ast3">Flappy Bird</a></li>
+      <li><a href="ast4">Typing Tutor</a></li>
+    </ul>
   </div>
 </body>
