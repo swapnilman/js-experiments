@@ -145,14 +145,16 @@ class Game {
 
 var game = new Game();
 
-buttonEl.addEventListener('click', () => {
+buttonEl.addEventListener('mousedown', gameStart)
+
+function gameStart() {
   for (let i = 0; i < game.inPlayWords.length; i++) {
     containerEl.removeChild(game.inPlayWords[i].el);
   }
   messageEl.removeChild(messageEl.lastChild)
   messageEl.style.visibility = 'hidden';
   game.init()
-})
+}
 
 function gameOver() {
   clearInterval(game.interval);
