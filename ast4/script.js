@@ -98,7 +98,7 @@ class Game {
 
   gameLoop() {
     if (this.count % ((10 - this.level) * 20) === 0 || this.inPlayWords.length == 0) {
-      let word = new Word();
+      let word = new Word(this.level);
       this.inPlayWords.push(word)
       word.draw()
     }
@@ -131,7 +131,8 @@ class Game {
             this.inPlayWords.splice(i, 1); //removes word from array if match found
             this.score++;
             scoreEl.innerHTML = this.score; //updates score on screne
-            if(this.score % 13 === 0 && this.score < 10) this.level++; //level up after 13 words :: max level 10
+            console.log(this.score % 13, this.score % 13 === 0)
+            if(this.score % 13 === 0 && this.level < 5) this.level++; //level up after 13 words :: max level 10
             if(this.score % 21 === 0) this.speed++; //speed up after certain interval
             //use of prime numbers to avoid two events from overlapping
           }

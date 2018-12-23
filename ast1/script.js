@@ -31,7 +31,8 @@ function Slider(wrapperId, containerId) {
 
   container.appendChild(indexBtnWrapper);
 
-  var interval;
+  var autoInterval;
+  var btnInterval;
   this.current = 0;
   this.marginLeft = 0;
   this.slideSpeed = 5;
@@ -42,24 +43,25 @@ function Slider(wrapperId, containerId) {
   }
 
   this.autoSlide = function () {
-    setInterval(function () {
+    autoInterval = setInterval(function () {
       that.slide(5)
     }, 5000)
   }
 
   this.slide = function (slideSpeed) {
-    interval = setInterval(function () {
+    clearInterval(btnInterval)
+    btnInterval = setInterval(function () {
       that.marginLeft -= slideSpeed;
       wrapper.style.marginLeft = that.marginLeft + 'px';
 
       if (!(that.marginLeft > -4000)) {
         that.marginLeft = 0;
-        console.log(that.marginLeft)
+        console.log(btnInterval)
+        clearInterval(btnInterval)
       }
 
       if (that.marginLeft % 800 == 0) {
-        clearInterval(interval);
-        console.log(slideSpeed, that.marginLeft);
+        clearInterval(btnInterval);
       }
     }, 1000 / 60);
   }
@@ -70,12 +72,10 @@ function Slider(wrapperId, containerId) {
   }
 
   this.previous = function () {
-    clearInterval(interval);
     that.slide(-50);
   }
 
   this.next = function () {
-    clearInterval(interval);
     that.slide(50);
   }
 }

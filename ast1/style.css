@@ -3,12 +3,9 @@
   margin-right: auto;
 }
 
-
-
 body {
   background-color: #fffff0;
 }
-
 
 img {
   height: 600px;
@@ -57,6 +54,7 @@ button.next {
   position: absolute;
   bottom: 10px;
   text-align: center;
+  z-index: 20;
 }
 
 

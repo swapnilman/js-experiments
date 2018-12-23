@@ -1,4 +1,3 @@
-//BIRD
 class Bird {
   constructor(element) {
     this.x = 150;
